@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Nail_Salon_Mobile_App_New.MainPage"
+             BackgroundColor="{DynamicResource BackgroundColorLight}">
+
+    <ScrollView>
+        <StackLayout Padding="10">
+            <!-- Поиск -->
+            <Entry x:Name="SearchEntry" 
+                   Placeholder="Поиск по ФИО, телефону или услуге..." 
+                   Text="{Binding SearchText, Mode=TwoWay}" 
+                   TextChanged="OnSearchTextChanged" 
+                   BackgroundColor="{DynamicResource EntryBackgroundLight}" 
+                   TextColor="{DynamicResource EntryTextColorLight}" 
+                   Margin="0,5,0,10" />
+
+            <!-- Фильтр -->
+            <Picker x:Name="FilterPicker" 
+                    Title="Фильтр по услугам" 
+                    SelectedItem="{Binding SelectedFilter, Mode=TwoWay}" 
+                    SelectedIndexChanged="OnFilterSelected"
+                    BackgroundColor="{DynamicResource EntryBackgroundLight}" 
+                    TextColor="{DynamicResource EntryTextColorLight}" 
+                    Margin="0,5,0,10">
+            </Picker>
+
+            <!-- Форма создания клиента -->
+            <Label Text="Создать клиента" 
+                   FontSize="20" 
+                   HorizontalOptions="Center" 
+                   TextColor="{DynamicResource TextColorLight}" />
+
+            <Entry x:Name="FullNameEntry" 
+                   Placeholder="ФИО" 
+                   Text="{Binding NewCustomerFullName, Mode=TwoWay}" 
+                   BackgroundColor="{DynamicResource EntryBackgroundLight}" 
+                   TextColor="{DynamicResource EntryTextColorLight}" 
+                   Margin="0,5,0,0" />
+
+            <Label Text="Дата рождения" FontSize="14" TextColor="{DynamicResource TextColorLight}" />
+            <DatePicker x:Name="BirthDatePicker" 
+                        Date="{Binding NewCustomerBirthDate, Mode=TwoWay}" 
+                        BackgroundColor="{DynamicResource EntryBackgroundLight}" />
+
+            <Entry x:Name="PhoneNumberEntry" 
+                   Placeholder="Телефон" 
+                   Text="{Binding NewCustomerPhoneNumber, Mode=TwoWay}" 
+                   Keyboard="Telephone" 
+                   BackgroundColor="{DynamicResource EntryBackgroundLight}" 
+                   TextColor="{DynamicResource EntryTextColorLight}" />
+
+            <Label Text="Услуга" FontSize="14" TextColor="{DynamicResource TextColorLight}" />
+            <Picker x:Name="ServicePicker" 
+                    Title="Выберите услугу" 
+                    SelectedItem="{Binding NewCustomerService, Mode=TwoWay}" 
+                    BackgroundColor="{DynamicResource EntryBackgroundLight}" 
+                    TextColor="{DynamicResource EntryTextColorLight}" />
+
+            <Label Text="Дата записи" FontSize="14" TextColor="{DynamicResource TextColorLight}" />
+            <DatePicker x:Name="AppointmentDatePicker" 
+                        Date="{Binding NewCustomerAppointmentDate, Mode=TwoWay}" 
+                        BackgroundColor="{DynamicResource EntryBackgroundLight}" />
+
+            <Label Text="Время записи" FontSize="14" TextColor="{DynamicResource TextColorLight}" />
+            <TimePicker x:Name="AppointmentTimePicker" 
+                        Time="{Binding NewCustomerAppointmentTime, Mode=TwoWay}" 
+                        BackgroundColor="{DynamicResource EntryBackgroundLight}" />
+
+            <Button Text="Создать" 
+                    Clicked="OnCreateCustomerClicked" 
+                    BackgroundColor="{DynamicResource ButtonBackgroundLight}" 
+                    TextColor="{DynamicResource ButtonTextColorLight}" 
+                    Margin="0,5,0,0" />
+
+            <!-- Журнал клиентов -->
+            <Label Text="Журнал клиентов" 
+                   FontSize="20" 
+                   HorizontalOptions="Center" 
+                   TextColor="{DynamicResource TextColorLight}" 
+                   Margin="0,20,0,10" />
+
+            <ListView x:Name="CustomerLog" ItemsSource="{Binding Customers}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal" Padding="10">
+                                <Label Text="{Binding CustomerFullName}" FontSize="14" HorizontalOptions="StartAndExpand" />
+                                <Label Text="{Binding CustomerPhoneNumber}" FontSize="14" HorizontalOptions="StartAndExpand" />
+                                <Label Text="{Binding ServiceName}" FontSize="14" HorizontalOptions="StartAndExpand" />
+                                <Label Text="{Binding Price, StringFormat='{0:C}'}" FontSize="14" HorizontalOptions="StartAndExpand" />
+                                <Label Text="{Binding StartDateTime, StringFormat='{0:dd MMMM yyyy HH:mm}'}" FontSize="14" HorizontalOptions="StartAndExpand" />
+                                <Button Text="Редактировать" Clicked="OnEditCustomerClicked" WidthRequest="20" HeightRequest="50" CommandParameter="{Binding}" BackgroundColor="LightBlue" Margin="5,0,0,0" />
+                                <Button Text="Удалить" Clicked="OnDeleteCustomerClicked"  WidthRequest="20" HeightRequest="50" CommandParameter="{Binding}" BackgroundColor="LightCoral" Margin="5,0,0,0" />
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
