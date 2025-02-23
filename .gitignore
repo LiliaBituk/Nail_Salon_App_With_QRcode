@@ -1,5 +1,69 @@
+# Visual Studio
+.vs/
+*.suo
+*.user
+*.userprefs
+*.sln.docstates
+
+# Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
 bin/
 obj/
-.vs/
-*.user
-*.suo
+out/
+publish/
+
+# NuGet Packages
+*.nupkg
+*.snupkg
+packages/
+*.nuspec
+
+# Visual Studio Code
+.vscode/
+
+# Rider
+.idea/
+
+# Mac
+*.DS_Store
+
+# iOS
+*.ipa
+*.app
+*.dSYM.zip
+*.dSYM
+
+# Android
+*.apk
+*.ap_
+*.dex
+*.so
+*.class
+*.jar
+*.keystore
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.swp
+
+# Other
+*.db
+*.db-journal
+*.sqlite
+*.sqlite-journal
+*.pdb
+*.mdb
+*.scc
+*.cache
+*.pidb
+*.userprefs
+*.sln.ide
+*.sln.docstates
